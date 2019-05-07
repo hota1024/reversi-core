@@ -1,0 +1,29 @@
+{
+  "defaultSeverity": "error",
+  "rulesDirectory": [
+    "tslint-plugin-prettier"
+  ],
+  "extends": [
+    "tslint-config-standard",
+    "tslint-config-prettier"
+  ],
+  "linterOptions": {
+    "exclude": [
+      "tests"
+    ]
+  },
+  "files": [
+    "src/*.ts"
+  ],
+  "rules": {
+    "no-empty": false,
+    "prettier": [
+      true,
+      {
+        "doubleQuote": false,
+        "singleQuote": true,
+        "semi": false
+      }
+    ]
+  }
+}
