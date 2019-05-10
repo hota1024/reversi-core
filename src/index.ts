@@ -38,13 +38,13 @@ const ReversiCore = {
   }
 }
 
-interface Window {
-  ReversiCore: Object
-}
+// interface Window {
+//   ReversiCore: Object
+// }
 
-declare let window: Window
-if (window) {
-  window.ReversiCore = ReversiCore
-}
+// declare let window: Window
+// if (window) {
+//   window.ReversiCore = ReversiCore
+// }
 
 export default ReversiCore
