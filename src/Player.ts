@@ -5,6 +5,7 @@ import Reversi from './Reversi'
 abstract class Player {
   protected _turn: Turn
   protected _reversi: Reversi
+  public name: string = ''
 
   /**
    * Turn of player
