@@ -36,7 +36,11 @@ var ReversiCore = {
         TileCountJudger: TileCountJudger_1.default
     }
 };
-if (window) {
-    window.ReversiCore = ReversiCore;
-}
+// interface Window {
+//   ReversiCore: Object
+// }
+// declare let window: Window
+// if (window) {
+//   window.ReversiCore = ReversiCore
+// }
 exports.default = ReversiCore;
