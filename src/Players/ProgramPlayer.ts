@@ -1,5 +1,5 @@
 import Player from '../Player'
-import Vec2 from '@/Vec2'
+import Vec2 from '../Vec2'
 
 class ProgramPlayer extends Player {
   put(x: number, y: number) {

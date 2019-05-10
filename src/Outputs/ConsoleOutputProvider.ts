@@ -1,7 +1,7 @@
-import IOutputProvider from '@/IOutputProvider'
+import IOutputProvider from '../IOutputProvider'
 import Reversi from '../Reversi'
 import ErrorType from '../ErrorType'
-import Result from '@/Result'
+import Result from '../Result'
 
 class ConsoleOutputProvider implements IOutputProvider {
   reversi: Reversi

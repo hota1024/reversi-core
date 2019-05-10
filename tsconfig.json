@@ -1,21 +1,7 @@
 {
   "compilerOptions": {
-    "outDir": "./dist/",
-    "sourceMap": true,
-    "noImplicitAny": true,
     "module": "es6",
     "target": "es5",
-    "jsx": "react",
-    "allowJs": true,
-    "baseUrl": "./",
-    "paths": {
-      "@/*": ["src/*"]
-    },
-    "typeRoots": [
-      "src/@types",
-      "node_modules/@types"
-    ],
-    "esModuleInterop": true,
-    "downlevelIteration": true
+    "declaration": true
   }
 }

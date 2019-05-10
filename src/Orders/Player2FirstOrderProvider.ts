@@ -1,6 +1,6 @@
 import IOrderProvider from '../IOrderProvider'
-import Turn from '@/Turn'
-import Color from '@/Color'
+import Turn from '../Turn'
+import Color from '../Color'
 
 class Player2FirstOrderProvider implements IOrderProvider {
   getPlayer1Turn() {

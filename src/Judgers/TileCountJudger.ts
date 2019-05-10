@@ -1,7 +1,7 @@
-import IJudger from '@/IJudger'
-import Result from '@/Result'
-import Reversi from '@/Reversi'
-import ResultType from '@/ResultType'
+import IJudger from '../IJudger'
+import Result from '../Result'
+import Reversi from '../Reversi'
+import ResultType from '../ResultType'
 
 class TileCountJudger implements IJudger {
   getResult(reversi: Reversi) {
