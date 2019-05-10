@@ -4,6 +4,7 @@ import Reversi from './Reversi';
 declare abstract class Player {
     protected _turn: Turn;
     protected _reversi: Reversi;
+    name: string;
     /**
      * Turn of player
      */

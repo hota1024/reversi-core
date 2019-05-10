@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var Player = /** @class */ (function () {
     function Player() {
+        this.name = '';
     }
     Object.defineProperty(Player.prototype, "turn", {
         /**
