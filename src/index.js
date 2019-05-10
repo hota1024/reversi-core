@@ -36,5 +36,7 @@ var ReversiCore = {
         TileCountJudger: TileCountJudger_1.default
     }
 };
-window.ReversiCore = ReversiCore;
+if (window) {
+    window.ReversiCore = ReversiCore;
+}
 exports.default = ReversiCore;
