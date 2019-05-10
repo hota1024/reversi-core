@@ -1,7 +1,9 @@
-import Vec2 from './Vec2';
-import Tile from './Tile';
-import Color from './Color';
-import Turn from './Turn';
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var Vec2_1 = require("./Vec2");
+var Tile_1 = require("./Tile");
+var Color_1 = require("./Color");
+var Turn_1 = require("./Turn");
 var Board = /** @class */ (function () {
     function Board() {
         var _this = this;
@@ -20,18 +22,18 @@ var Board = /** @class */ (function () {
             3, 3, 3, 3, 3, 3, 3, 3, 3, 3
         ];
         // tslint:enable
-        var tileCodeColors = [Color.Empty, Color.White, Color.Black, Color.Wall];
+        var tileCodeColors = [Color_1.default.Empty, Color_1.default.White, Color_1.default.Black, Color_1.default.Wall];
         tileCodes.forEach(function (code) {
             var color;
             if (code === 0)
-                color = Color.Empty;
+                color = Color_1.default.Empty;
             if (code === 1)
-                color = Color.White;
+                color = Color_1.default.White;
             if (code === 2)
-                color = Color.Black;
+                color = Color_1.default.Black;
             if (code === 3)
-                color = Color.Wall;
-            var tile = new Tile(color);
+                color = Color_1.default.Wall;
+            var tile = new Tile_1.default(color);
             _this._tiles.push(tile);
         });
     }
@@ -72,7 +74,7 @@ var Board = /** @class */ (function () {
             if (this.runAngle(pos, angle, turn, false) === false)
                 return false;
         }
-        var runPos = new Vec2(pos);
+        var runPos = new Vec2_1.default(pos);
         do {
             runPos.moveBy(angle);
             var tile = this.getTile(runPos);
@@ -88,21 +90,21 @@ var Board = /** @class */ (function () {
     };
     Board.prototype.run = function (pos, turn, flip) {
         var result = false;
-        if (this.runAngle(pos, new Vec2(1, 0), turn, flip))
+        if (this.runAngle(pos, new Vec2_1.default(1, 0), turn, flip))
             result = true;
-        if (this.runAngle(pos, new Vec2(-1, 0), turn, flip))
+        if (this.runAngle(pos, new Vec2_1.default(-1, 0), turn, flip))
             result = true;
-        if (this.runAngle(pos, new Vec2(0, 1), turn, flip))
+        if (this.runAngle(pos, new Vec2_1.default(0, 1), turn, flip))
             result = true;
-        if (this.runAngle(pos, new Vec2(0, -1), turn, flip))
+        if (this.runAngle(pos, new Vec2_1.default(0, -1), turn, flip))
             result = true;
-        if (this.runAngle(pos, new Vec2(1, 1), turn, flip))
+        if (this.runAngle(pos, new Vec2_1.default(1, 1), turn, flip))
             result = true;
-        if (this.runAngle(pos, new Vec2(1, -1), turn, flip))
+        if (this.runAngle(pos, new Vec2_1.default(1, -1), turn, flip))
             result = true;
-        if (this.runAngle(pos, new Vec2(-1, 1), turn, flip))
+        if (this.runAngle(pos, new Vec2_1.default(-1, 1), turn, flip))
             result = true;
-        if (this.runAngle(pos, new Vec2(-1, -1), turn, flip))
+        if (this.runAngle(pos, new Vec2_1.default(-1, -1), turn, flip))
             result = true;
         if (result && flip) {
             this.getTile(pos).set(turn.color);
@@ -110,14 +112,14 @@ var Board = /** @class */ (function () {
         return result;
     };
     Board.prototype.put = function (pos, turn) {
-        return this.run(pos, new Turn(turn.color), true);
+        return this.run(pos, new Turn_1.default(turn.color), true);
     };
     Board.prototype.putablePoints = function (turn) {
         var points = [];
         for (var y = 0; y < this.height; ++y) {
             for (var x = 0; x < this.width; ++x) {
-                if (this.run(new Vec2(x, y), turn, false)) {
-                    points.push(new Vec2(x, y));
+                if (this.run(new Vec2_1.default(x, y), turn, false)) {
+                    points.push(new Vec2_1.default(x, y));
                 }
             }
         }
@@ -139,7 +141,7 @@ var Board = /** @class */ (function () {
         var log = '';
         for (var y = 0; y < this.height; ++y) {
             for (var x = 0; x < this.width; ++x) {
-                var tile = this.getTile(new Vec2(x, y));
+                var tile = this.getTile(new Vec2_1.default(x, y));
                 if (tile.isBlack())
                     log += '◝ ';
                 else if (tile.isWhite())
@@ -153,4 +155,4 @@ var Board = /** @class */ (function () {
     };
     return Board;
 }());
-export default Board;
+exports.default = Board;

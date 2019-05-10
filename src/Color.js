@@ -1,3 +1,5 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 var ColorCode;
 (function (ColorCode) {
     ColorCode[ColorCode["White"] = 0] = "White";
@@ -108,4 +110,4 @@ var Color = /** @class */ (function () {
     });
     return Color;
 }());
-export default Color;
+exports.default = Color;

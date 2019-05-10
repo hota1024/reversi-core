@@ -1,38 +1,40 @@
-import Reversi from './Reversi';
-import Board from './Board';
-import Player from './Player';
-import Turn from './Turn';
-import Vec2 from './Vec2';
-import ErrorType from './ErrorType';
-import Color from './Color';
-import RandomOrderProvider from './Orders/RandomOrderProvider';
-import Player1FirstOrderProvider from './Orders/Player1FirstOrderProvider';
-import Player2FirstOrderProvider from './Orders/Player2FirstOrderProvider';
-import ConsoleOutputProvider from './Outputs/ConsoleOutputProvider';
-import ProgramPlayer from './Players/ProgramPlayer';
-import TileCountJudger from './Judgers/TileCountJudger';
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var Reversi_1 = require("./Reversi");
+var Board_1 = require("./Board");
+var Player_1 = require("./Player");
+var Turn_1 = require("./Turn");
+var Vec2_1 = require("./Vec2");
+var ErrorType_1 = require("./ErrorType");
+var Color_1 = require("./Color");
+var RandomOrderProvider_1 = require("./Orders/RandomOrderProvider");
+var Player1FirstOrderProvider_1 = require("./Orders/Player1FirstOrderProvider");
+var Player2FirstOrderProvider_1 = require("./Orders/Player2FirstOrderProvider");
+var ConsoleOutputProvider_1 = require("./Outputs/ConsoleOutputProvider");
+var ProgramPlayer_1 = require("./Players/ProgramPlayer");
+var TileCountJudger_1 = require("./Judgers/TileCountJudger");
 var ReversiCore = {
-    Reversi: Reversi,
-    Board: Board,
-    Player: Player,
-    Turn: Turn,
-    Vec2: Vec2,
-    ErrorType: ErrorType,
-    Color: Color,
+    Reversi: Reversi_1.default,
+    Board: Board_1.default,
+    Player: Player_1.default,
+    Turn: Turn_1.default,
+    Vec2: Vec2_1.default,
+    ErrorType: ErrorType_1.default,
+    Color: Color_1.default,
     Orders: {
-        RandomOrderProvider: RandomOrderProvider,
-        Player1FirstOrderProvider: Player1FirstOrderProvider,
-        Player2FirstOrderProvider: Player2FirstOrderProvider
+        RandomOrderProvider: RandomOrderProvider_1.default,
+        Player1FirstOrderProvider: Player1FirstOrderProvider_1.default,
+        Player2FirstOrderProvider: Player2FirstOrderProvider_1.default
     },
     Outputs: {
-        ConsoleOutputProvider: ConsoleOutputProvider
+        ConsoleOutputProvider: ConsoleOutputProvider_1.default
     },
     Players: {
-        ProgramPlayer: ProgramPlayer
+        ProgramPlayer: ProgramPlayer_1.default
     },
     Judgers: {
-        TileCountJudger: TileCountJudger
+        TileCountJudger: TileCountJudger_1.default
     }
 };
 window.ReversiCore = ReversiCore;
-export default ReversiCore;
+exports.default = ReversiCore;

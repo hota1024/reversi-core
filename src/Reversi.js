@@ -1,8 +1,10 @@
-import Board from './Board';
-import Turn from './Turn';
-import Vec2 from './Vec2';
-import ErrorType from './ErrorType';
-import Color from './Color';
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var Board_1 = require("./Board");
+var Turn_1 = require("./Turn");
+var Vec2_1 = require("./Vec2");
+var ErrorType_1 = require("./ErrorType");
+var Color_1 = require("./Color");
 var Reversi = /** @class */ (function () {
     function Reversi(player1, player2, order, output, judger) {
         this.player1 = player1;
@@ -10,8 +12,8 @@ var Reversi = /** @class */ (function () {
         this.order = order;
         this.output = output;
         this.judger = judger;
-        this.turn = new Turn(Color.Black);
-        this.board = new Board();
+        this.turn = new Turn_1.default(Color_1.default.Black);
+        this.board = new Board_1.default();
         player1.setTurn(order.getPlayer1Turn());
         player2.setTurn(order.getPlayer2Turn());
         player1.setReversi(this);
@@ -51,15 +53,15 @@ var Reversi = /** @class */ (function () {
         if (this._isGameOver)
             return false;
         if (this.turn.color.is(turn.color) === false) {
-            this.output.error(ErrorType.NotYourTurn);
+            this.output.error(ErrorType_1.default.NotYourTurn);
             return false;
         }
-        this.lastPut = new Vec2(pos);
+        this.lastPut = new Vec2_1.default(pos);
         var result = this.board.put(pos, this.turn);
         if (result) {
             this.turn.flip();
             if (this.board.putablePoints(this.turn).length === 0) {
-                this.output.error(ErrorType.Pass);
+                this.output.error(ErrorType_1.default.Pass);
                 this.turn.flip();
                 if (this.board.putablePoints(this.turn).length === 0) {
                     return this.gameOver();
@@ -71,7 +73,7 @@ var Reversi = /** @class */ (function () {
                 this.white.onMyTurn();
         }
         else {
-            this.output.error(ErrorType.CanNotPutHere);
+            this.output.error(ErrorType_1.default.CanNotPutHere);
         }
         this.output.output();
         return result;
@@ -86,4 +88,4 @@ var Reversi = /** @class */ (function () {
     };
     return Reversi;
 }());
-export default Reversi;
+exports.default = Reversi;

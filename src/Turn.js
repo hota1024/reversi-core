@@ -1,3 +1,5 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 var Turn = /** @class */ (function () {
     function Turn(color) {
         this.set(color);
@@ -21,4 +23,4 @@ var Turn = /** @class */ (function () {
     });
     return Turn;
 }());
-export default Turn;
+exports.default = Turn;

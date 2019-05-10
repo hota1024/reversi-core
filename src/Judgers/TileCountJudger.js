@@ -1,5 +1,7 @@
-import Result from '../Result';
-import ResultType from '../ResultType';
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var Result_1 = require("../Result");
+var ResultType_1 = require("../ResultType");
 var TileCountJudger = /** @class */ (function () {
     function TileCountJudger() {
     }
@@ -8,16 +10,16 @@ var TileCountJudger = /** @class */ (function () {
         var whiteCount = reversi.white.getTileCount();
         var resultType;
         if (blackCount === whiteCount) {
-            resultType = ResultType.Draw;
+            resultType = ResultType_1.default.Draw;
         }
         else if (blackCount > whiteCount) {
-            resultType = ResultType.BlackWin;
+            resultType = ResultType_1.default.BlackWin;
         }
         else if (blackCount < whiteCount) {
-            resultType = ResultType.WhiteWin;
+            resultType = ResultType_1.default.WhiteWin;
         }
-        return new Result(reversi.black, reversi.white, resultType);
+        return new Result_1.default(reversi.black, reversi.white, resultType);
     };
     return TileCountJudger;
 }());
-export default TileCountJudger;
+exports.default = TileCountJudger;

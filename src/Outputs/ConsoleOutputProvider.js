@@ -1,3 +1,5 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 var ConsoleOutputProvider = /** @class */ (function () {
     function ConsoleOutputProvider() {
     }
@@ -26,4 +28,4 @@ var ConsoleOutputProvider = /** @class */ (function () {
     };
     return ConsoleOutputProvider;
 }());
-export default ConsoleOutputProvider;
+exports.default = ConsoleOutputProvider;

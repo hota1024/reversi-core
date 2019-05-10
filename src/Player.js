@@ -1,3 +1,5 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 var Player = /** @class */ (function () {
     function Player() {
     }
@@ -64,4 +66,4 @@ var Player = /** @class */ (function () {
     Player.prototype.onMyTurn = function () { };
     return Player;
 }());
-export default Player;
+exports.default = Player;

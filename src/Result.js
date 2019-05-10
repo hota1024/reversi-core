@@ -1,17 +1,19 @@
-import ResultType from './ResultType';
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var ResultType_1 = require("./ResultType");
 var Result = /** @class */ (function () {
     function Result(black, white, type) {
         this._black = black;
         this._white = white;
         this._isDraw = false;
-        if (type === ResultType.Draw) {
+        if (type === ResultType_1.default.Draw) {
             this._isDraw = true;
         }
-        else if (type === ResultType.BlackWin) {
+        else if (type === ResultType_1.default.BlackWin) {
             this._winner = black;
             this._loser = white;
         }
-        else if (type === ResultType.WhiteWin) {
+        else if (type === ResultType_1.default.WhiteWin) {
             this._winner = white;
             this._loser = black;
         }
@@ -67,4 +69,4 @@ var Result = /** @class */ (function () {
     });
     return Result;
 }());
-export default Result;
+exports.default = Result;

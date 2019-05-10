@@ -1,3 +1,5 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 var Vec2 = /** @class */ (function () {
     function Vec2(x, y) {
         if (x === void 0) { x = 0; }
@@ -87,4 +89,4 @@ var Vec2 = /** @class */ (function () {
     };
     return Vec2;
 }());
-export default Vec2;
+exports.default = Vec2;
