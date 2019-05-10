@@ -43,6 +43,8 @@ interface Window {
 }
 
 declare let window: Window
-window.ReversiCore = ReversiCore
+if (window) {
+  window.ReversiCore = ReversiCore
+}
 
 export default ReversiCore
