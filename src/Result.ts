@@ -1,4 +1,4 @@
-import Reversi from '@/Reversi'
+import Reversi from './Reversi'
 import Player from './Player'
 import ResultType from './ResultType'
 
