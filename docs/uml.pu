@@ -80,6 +80,10 @@ namespace RversiCore {
   }
   Reversi -> RversiCore.Turn
   Reversi -> RversiCore.Player
+
+  interface IOutputProvider {
+    + void output(Reversi reversi)
+  }
 }
 
 namespace ExampleBiscoBot {

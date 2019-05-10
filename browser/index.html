@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Reversi-Core</title>
+
+  <style>
+    .tile {
+      display: inline;
+      width: 32px;
+      height: 32px;
+      background-color: rgb(0, 189, 110);
+      text-align: center;
+      font-size: 22px;
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+  <div id="baord"></div>
+  <div id="turn"></div>
+  <div id="error"></div>
+  <div id="result"></div>
+  <script src="/dist/reversi-core.js"></script>
+  <script>
+    window.onload = () => {
+      const $Board = document.getElementById('baord')
+
+      class Player extends ReversiCore.Player {
+        onMyTurn() {
+          setTimeout(() => {
+            let points = this.reversi.board.putablePoints(this.turn)
+            this.send(points[Math.floor(Math.random() * (points.length - 1))])
+          }, 100)
+        }
+
+        onMassClicked(x, y) {
+          if (this.isMyTurn() === false) return
+          this.send(new ReversiCore.Vec2(x, y))
+        }
+      }
+
+      class HTMLOutputProvider {
+        constructor(p1, p2) {
+          this.reversi = null
+          this.p1 = p1
+          this.p2 = p2
+        }
+
+        initialize() {
+          $Board.innerHTML = ''
+          const { board } = this.reversi
+          const { width, height } = board
+
+          for (let y = 0; y < height; ++y) {
+            const $Line = document.createElement('div')
+            for (let x = 0; x < width; ++x) {
+              const $Mass = document.createElement('code')
+              $Mass.classList.add('tile')
+
+              $Mass.addEventListener('click', () => p1.onMassClicked(x, y))
+              $Mass.addEventListener('click', () => p2.onMassClicked(x, y))
+
+              $Line.appendChild($Mass)
+            }
+            $Board.appendChild($Line)
+          }
+        }
+
+        output() {
+          this.turn()
+          this.board()
+        }
+
+        error(error) {
+          document.getElementById('error').innerText = error
+        }
+
+        turn() {
+          document.getElementById('turn').innerText = this.reversi.turn.color.isBlack() ? 'Black' : 'White'
+        }
+
+        gameOver(result) {
+          let text = 'GameOver\nResult:'
+
+          if (result.isDraw) {
+            text += 'Draw'
+          } else if (result.blackWin) {
+            text += 'Black Win'
+          } else if (result.whiteWin) {
+            text += 'White Win'
+          }
+          text += '\n'
+
+          text += `Black: ${result.black.getTileCount()}\n`
+          text += `White: ${result.white.getTileCount()}\n`
+
+          document.getElementById('result').innerHTML = text.replace('\n', '<br />')
+        }
+
+        board() {
+          const { board } = this.reversi
+          const { width, height } = board
+
+          for (let y = 0; y < height; ++y) {
+            for (let x = 0; x < width; ++x) {
+              const $Mass = $Board.children[y].children[x]
+              const tile = this.reversi.board.getTile(new ReversiCore.Vec2(x, y))
+
+              if (tile.isEmpty()) {
+                $Mass.innerText = board.isPuttable(new ReversiCore.Vec2(x, y), this.reversi.turn) ? '!' : '#'
+              } else if (tile.isWhite()) {
+                $Mass.innerText = '○'
+              } else if (tile.isBlack()) {
+                $Mass.innerText = '●'
+              }
+            }
+          }
+        }
+
+        error(error) {}
+      }
+      let p1 = new Player()
+      let p2 = new Player()
+      const reversi = new ReversiCore.Reversi(
+        p1,
+        p2,
+        new ReversiCore.Orders.Player1FirstOrderProvider,
+        new HTMLOutputProvider(new Player, p2),
+        new ReversiCore.Judgers.TileCountJudger
+      )
+
+      // p1.put(3, 4)
+
+      window.reversi = reversi
+    }
+  </script>
+</body>
+</html>

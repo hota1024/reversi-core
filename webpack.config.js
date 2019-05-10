@@ -5,7 +5,7 @@ module.exports = {
   entry: './src/index.ts',
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'craftbox.js',
+    filename: 'reversi-core.js',
     publicPath: '/dist/'
   },
   devtool: 'inline-source-map',
