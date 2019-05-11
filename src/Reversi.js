@@ -39,6 +39,16 @@ var Reversi = /** @class */ (function () {
         enumerable: true,
         configurable: true
     });
+    Object.defineProperty(Reversi.prototype, "current", {
+        get: function () {
+            if (this.turn.color.isBlack())
+                return this.black;
+            if (this.turn.color.isWhite())
+                return this.white;
+        },
+        enumerable: true,
+        configurable: true
+    });
     Reversi.prototype.initialize = function () {
         this.output.reversi = this;
         this.output.initialize();

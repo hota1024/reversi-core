@@ -18,6 +18,7 @@ declare class Reversi {
     constructor(player1: Player, player2: Player, order: IOrderProvider, output: IOutputProvider, judger: IJudger);
     readonly black: Player;
     readonly white: Player;
+    readonly current: Player;
     initialize(): void;
     /**
      * Put on pos with turn
