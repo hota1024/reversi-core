@@ -43,6 +43,11 @@ class Reversi {
     return this.player1.turn.color.isWhite() ? this.player1 : this.player2
   }
 
+  get current() {
+    if (this.turn.color.isBlack()) return this.black
+    if (this.turn.color.isWhite()) return this.white
+  }
+
   initialize() {
     this.output.reversi = this as Reversi
     this.output.initialize()
