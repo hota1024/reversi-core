@@ -12,6 +12,7 @@ class Reversi {
   board: Board
   turn: Turn
   lastPut: Vec2
+  hooks: Array<any>
   _isGameOver: boolean
 
   constructor(
@@ -23,6 +24,7 @@ class Reversi {
   ) {
     this.turn = new Turn(Color.Black)
     this.board = new Board()
+    this.hooks = []
     player1.setTurn(order.getPlayer1Turn())
     player2.setTurn(order.getPlayer2Turn())
     player1.setReversi(this)
@@ -70,6 +72,7 @@ class Reversi {
     let result = this.board.put(pos, this.turn)
 
     if (result) {
+      this.invokeHooks('turnEnd')
       this.turn.flip()
       if (this.board.putablePoints(this.turn).length === 0) {
         this.output.error(ErrorType.Pass)
@@ -95,7 +98,30 @@ class Reversi {
   }
 
   isGameOver() {
+    this.invokeHooks('gameOver')
     return this._isGameOver
+  }
+
+  invokeHooks(name: string) {
+    this.hooks.forEach(hook => {
+      if (hook.name === name) {
+        hook.callback()
+      }
+    })
+  }
+
+  onGameOver(fn: any) {
+    this.hooks.push({
+      name: 'gameOver',
+      callback: fn
+    })
+  }
+
+  onTurnEnd(fn: any) {
+    this.hooks.push({
+      name: 'turnEnd',
+      callback: fn
+    })
   }
 }
 

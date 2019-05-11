@@ -14,6 +14,7 @@ var Reversi = /** @class */ (function () {
         this.judger = judger;
         this.turn = new Turn_1.default(Color_1.default.Black);
         this.board = new Board_1.default();
+        this.hooks = [];
         player1.setTurn(order.getPlayer1Turn());
         player2.setTurn(order.getPlayer2Turn());
         player1.setReversi(this);
@@ -69,6 +70,7 @@ var Reversi = /** @class */ (function () {
         this.lastPut = new Vec2_1.default(pos);
         var result = this.board.put(pos, this.turn);
         if (result) {
+            this.invokeHooks('turnEnd');
             this.turn.flip();
             if (this.board.putablePoints(this.turn).length === 0) {
                 this.output.error(ErrorType_1.default.Pass);
@@ -94,7 +96,27 @@ var Reversi = /** @class */ (function () {
         this.output.gameOver(this.judger.getResult(this));
     };
     Reversi.prototype.isGameOver = function () {
+        this.invokeHooks('gameOver');
         return this._isGameOver;
+    };
+    Reversi.prototype.invokeHooks = function (name) {
+        this.hooks.forEach(function (hook) {
+            if (hook.name === name) {
+                hook.callback();
+            }
+        });
+    };
+    Reversi.prototype.onGameOver = function (fn) {
+        this.hooks.push({
+            name: 'gameOver',
+            callback: fn
+        });
+    };
+    Reversi.prototype.onTurnEnd = function (fn) {
+        this.hooks.push({
+            name: 'turnEnd',
+            callback: fn
+        });
     };
     return Reversi;
 }());

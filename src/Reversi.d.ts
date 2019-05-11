@@ -14,6 +14,7 @@ declare class Reversi {
     board: Board;
     turn: Turn;
     lastPut: Vec2;
+    hooks: Array<any>;
     _isGameOver: boolean;
     constructor(player1: Player, player2: Player, order: IOrderProvider, output: IOutputProvider, judger: IJudger);
     readonly black: Player;
@@ -28,5 +29,8 @@ declare class Reversi {
     put(pos: Vec2, turn: Turn): boolean | void;
     gameOver(): void;
     isGameOver(): boolean;
+    invokeHooks(name: string): void;
+    onGameOver(fn: any): void;
+    onTurnEnd(fn: any): void;
 }
 export default Reversi;
