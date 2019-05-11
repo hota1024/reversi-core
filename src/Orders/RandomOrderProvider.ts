@@ -6,7 +6,7 @@ class RandomOrderProvider implements IOrderProvider {
   r: boolean
 
   constructor() {
-    this.r = Math.floor(Math.random() * 1) === 0
+    this.r = Math.floor(Math.random() * 2) === 0
   }
 
   getPlayer1Turn() {
