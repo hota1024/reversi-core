@@ -94,9 +94,9 @@ var Reversi = /** @class */ (function () {
         this._isGameOver = true;
         this.output.output();
         this.output.gameOver(this.judger.getResult(this));
+        this.invokeHooks('gameOver');
     };
     Reversi.prototype.isGameOver = function () {
-        this.invokeHooks('gameOver');
         return this._isGameOver;
     };
     Reversi.prototype.invokeHooks = function (name) {

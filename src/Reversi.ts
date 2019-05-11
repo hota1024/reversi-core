@@ -95,10 +95,10 @@ class Reversi {
     this._isGameOver = true
     this.output.output()
     this.output.gameOver(this.judger.getResult(this))
+    this.invokeHooks('gameOver')
   }
 
   isGameOver() {
-    this.invokeHooks('gameOver')
     return this._isGameOver
   }
 
