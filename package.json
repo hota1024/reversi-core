@@ -11,6 +11,7 @@
     "lint": "eslint",
     "dev": "rollup -c rollup.config.js -w",
     "build": "rollup -c rollup.config.js --compact",
+    "start": "npm run build && node dist/index.js",
     "test": "jest --coverage",
     "test:watch": "jest --watchAll --coverage"
   },
