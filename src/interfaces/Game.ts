@@ -2,6 +2,11 @@ import { Color } from '@/types'
 import { IBoard } from './Board'
 
 /**
+ * GameResult type.
+ */
+export type GameResult = Color | 'draw'
+
+/**
  * Game#onTurn's callback function type.
  */
 export type GameOnTurnCallbackFn = () => Promise<void>
@@ -9,7 +14,7 @@ export type GameOnTurnCallbackFn = () => Promise<void>
 /**
  * Game#onFinish's callback function type.
  */
-export type GameOnFinishCallbackFn = (winner: Color) => Promise<void>
+export type GameOnFinishCallbackFn = (result: GameResult) => Promise<void>
 
 /**
  * Game#onPass's callback function type.
