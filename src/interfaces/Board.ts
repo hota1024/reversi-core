@@ -11,6 +11,16 @@ export interface IBoard {
   toGrid(): IGrid<Tile>
 
   /**
+   * board width.
+   */
+  readonly width: number
+
+  /**
+   * board height.
+   */
+  readonly height: number
+
+  /**
    * put a tile of given color and flip board tiles by reversi rules.
    *
    * @param color color to put.
