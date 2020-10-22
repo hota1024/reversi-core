@@ -55,4 +55,9 @@ export interface IGame {
    * @param callback callback function.
    */
   onPass(callback: GameOnPassCallbackFn): this
+
+  /**
+   * start game.
+   */
+  start(): this
 }
