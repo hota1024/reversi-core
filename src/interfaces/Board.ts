@@ -21,12 +21,12 @@ export interface IBoard {
   readonly height: number
 
   /**
-   * put a tile of given color and flip board tiles by reversi rules.
+   * put a tile of given color and flip board tiles by reversi rules and returns whether success.
    *
    * @param color color to put.
    * @param point point to put.
    */
-  put(color: Color, point: Point): this
+  put(color: Color, point: Point): boolean
 
   /**
    * returns whether can put tile of given color to given point.
