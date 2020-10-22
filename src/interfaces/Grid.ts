@@ -15,6 +15,16 @@ export type GridMapCallbackFn<T, U> = (value: T, point: Point) => void
  */
 export interface IGrid<T> {
   /**
+   * grid width.
+   */
+  readonly width: number
+
+  /**
+   * grid height.
+   */
+  readonly height: number
+
+  /**
    * fill by given value.
    *
    * @param value value to fill.
