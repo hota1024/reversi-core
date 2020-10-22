@@ -8,7 +8,7 @@ export type GridEachCallbackFn<T> = (value: T, point: Point) => void
 /**
  * Grid#map's callback function type.
  */
-export type GridMapCallbackFn<T, U> = (value: T, point: Point) => void
+export type GridMapCallbackFn<T, U> = (value: T, point: Point) => U
 
 /**
  * Grid interface.
