@@ -37,6 +37,13 @@ export interface IGrid<T> {
   get(point: Point): T
 
   /**
+   * returns whether grid has a given value.
+   *
+   * @param value value.
+   */
+  has(value: T): boolean
+
+  /**
    * call given callback for each values.
    *
    * @param callback callback function.
