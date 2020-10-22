@@ -3,4 +3,4 @@ import { Color } from '.'
 /**
  * Tile type.
  */
-export type Tile = Color | 'empty' | 'wall'
+export type Tile = Color | 'empty'
