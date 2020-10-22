@@ -19,6 +19,14 @@ export interface IBoard {
   put(color: Color, point: Point): this
 
   /**
+   * returns whether can put tile of given color to given point.
+   *
+   * @param color color to put.
+   * @param point point to put.
+   */
+  checkPut(color: Color, point: Point): boolean
+
+  /**
    * count tiles of gibven color.
    *
    * @param color color of tile to count.
