@@ -21,8 +21,9 @@ export class Grid<T> implements IGrid<T> {
   constructor(width: number, height: number, value?: T) {
     this.width = width
     this.height = height
-    if (value) {
-      this.fill(value)
+
+    for (let i = 0; i < this.values.length; ++i) {
+      this.values[i] = value as T
     }
   }
 
@@ -70,6 +71,6 @@ export class Grid<T> implements IGrid<T> {
    * @param point point.
    */
   private getPointIndex(point: Point) {
-    return point.y * this.width + point.y
+    return point.y * this.width + point.x
   }
 }
