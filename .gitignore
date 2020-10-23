@@ -1,4 +1,12 @@
+# OS
+.DS_Store
+
+# Node.js
 node_modules
+
+# Build
 dist
-out
-tests
+/types
+
+# Test
+/coverage
