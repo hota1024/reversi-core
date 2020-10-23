@@ -4,11 +4,6 @@ import { Color, Point, Tile } from '@/types'
 import { Grid } from './Grid'
 
 /**
- * BoardTile type.
- */
-type BoardTile = Tile | 'wall'
-
-/**
  * Board class.
  */
 export class Board implements IBoard {
@@ -19,7 +14,7 @@ export class Board implements IBoard {
   /**
    * board grid.
    */
-  private readonly grid: Grid<BoardTile>
+  private readonly grid: Grid<Tile>
 
   /**
    * Board constructor.
@@ -31,9 +26,9 @@ export class Board implements IBoard {
     this.width = width
     this.height = height
 
-    let grid = new Grid<BoardTile>(width + 2, height + 2, 'empty')
+    let grid = new Grid<Tile>(width + 2, height + 2, 'empty')
 
-    grid = grid.map<BoardTile>((value, { x, y }) => {
+    grid = grid.map<Tile>((value, { x, y }) => {
       if (x === 0 || y === 0 || x === width + 1 || y === height + 1) {
         return 'wall'
       }
@@ -41,24 +36,16 @@ export class Board implements IBoard {
       return 'empty'
     })
 
-    grid.set({ x: width / 2 - 1, y: height / 2 - 1 }, 'black')
     grid.set({ x: width / 2, y: height / 2 }, 'black')
-    grid.set({ x: width / 2, y: height / 2 - 1 }, 'white')
-    grid.set({ x: width / 2 - 1, y: height / 2 }, 'white')
+    grid.set({ x: width / 2 + 1, y: height / 2 + 1 }, 'black')
+    grid.set({ x: width / 2 + 1, y: height / 2 }, 'white')
+    grid.set({ x: width / 2, y: height / 2 + 1 }, 'white')
 
     this.grid = grid
   }
 
   toGrid(): Grid<Tile> {
-    const grid = new Grid<Tile>(this.width, this.height, 'empty')
-
-    this.grid.each((value, point) => {
-      if (value !== 'wall') {
-        grid.set(addPoint(point, { x: 1, y: 1 }), value)
-      }
-    })
-
-    return grid
+    return this.grid
   }
 
   put(color: Color, point: Point): boolean {
@@ -84,7 +71,7 @@ export class Board implements IBoard {
   getPointsToPut(color: Color): Point[] {
     const points: Point[] = []
 
-    this.grid.each((value, point) => {
+    this.toGrid().each((value, point) => {
       if (this.checkPut(color, point)) {
         points.push(point)
       }
@@ -105,7 +92,7 @@ export class Board implements IBoard {
       }
     }
 
-    const grid = this.grid
+    const grid = this.toGrid()
     const reversedColor = reverseColor(color)
 
     if (grid.get(point) !== 'empty') {
@@ -133,22 +120,23 @@ export class Board implements IBoard {
       if (doReverse) {
         grid.set(current, color)
       }
-    } while (['empty', 'wall'].includes(grid.get(current)))
+    } while (['white', 'black'].includes(grid.get(current)))
 
     return grid.get(current) === color
   }
 
   run(pos: Point, color: Color, doReverse: boolean): boolean {
-    let result = false
-
-    if (this.runAngle(pos, { x: 1, y: 0 }, color, doReverse)) result = true
-    if (this.runAngle(pos, { x: -1, y: 0 }, color, doReverse)) result = true
-    if (this.runAngle(pos, { x: 0, y: 1 }, color, doReverse)) result = true
-    if (this.runAngle(pos, { x: 0, y: -1 }, color, doReverse)) result = true
-    if (this.runAngle(pos, { x: 1, y: 1 }, color, doReverse)) result = true
-    if (this.runAngle(pos, { x: 1, y: -1 }, color, doReverse)) result = true
-    if (this.runAngle(pos, { x: -1, y: 1 }, color, doReverse)) result = true
-    if (this.runAngle(pos, { x: -1, y: -1 }, color, doReverse)) result = true
+    const results = [
+      this.runAngle(pos, { x: 1, y: 0 }, color, doReverse),
+      this.runAngle(pos, { x: -1, y: 0 }, color, doReverse),
+      this.runAngle(pos, { x: 0, y: 1 }, color, doReverse),
+      this.runAngle(pos, { x: 0, y: -1 }, color, doReverse),
+      this.runAngle(pos, { x: 1, y: 1 }, color, doReverse),
+      this.runAngle(pos, { x: 1, y: -1 }, color, doReverse),
+      this.runAngle(pos, { x: -1, y: 1 }, color, doReverse),
+      this.runAngle(pos, { x: -1, y: -1 }, color, doReverse),
+    ]
+    const result = results.includes(true)
 
     if (result && doReverse) {
       this.grid.set(pos, color)
